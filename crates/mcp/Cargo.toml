@@ -1,0 +1,8 @@
+[package]
+name = "accio-mcp"
+version = "0.1.0"
+edition = "2024"
+description = "MCP server (stdio) that lets coding agents search code repositories indexed by Accio"
+
+[dependencies]
+serde_json = "1"

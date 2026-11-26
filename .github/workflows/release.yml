@@ -1,0 +1,52 @@
+name: release
+
+# Push a tag like v0.1.0 (matching the version in app/src-tauri/tauri.conf.json) to build
+# the DMG and attach it to a GitHub release. Run manually to get the DMG as a workflow
+# artifact without releasing.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dmg:
+    runs-on: macos-latest # Apple Silicon
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tag matches the app version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          version=$(python3 -c 'import json; print(json.load(open("app/src-tauri/tauri.conf.json"))["version"])')
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "tag $GITHUB_REF_NAME does not match app version $version" >&2
+            exit 1
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/ui/package-lock.json
+
+      - name: Tauri CLI
+        run: cargo install tauri-cli --version "2.12.6" --locked
+
+      - name: Build app and DMG
+        run: scripts/package-macos.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Accio-dmg
+          path: dist/*.dmg
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.dmg --title "Accio $GITHUB_REF_NAME" --generate-notes

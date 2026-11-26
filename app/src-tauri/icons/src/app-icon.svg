@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Accio: a note summoned toward you. Original artwork. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2B2766"/>
+      <stop offset="0.55" stop-color="#16163A"/>
+      <stop offset="1" stop-color="#090B17"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.6" cy="0.42" r="0.5">
+      <stop offset="0" stop-color="#7C6CF2" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#7C6CF2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tail" gradientUnits="userSpaceOnUse" x1="170" y1="830" x2="560" y2="500">
+      <stop offset="0" stop-color="#FFD66B" stop-opacity="0"/>
+      <stop offset="0.6" stop-color="#FFC94D" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFF3C4" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4E4FB"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20"/><feOffset dy="16" result="b"/>
+      <feFlood flood-color="#000" flood-opacity="0.45"/><feComposite in2="b" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="cardShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/><feOffset dx="-6" dy="18" result="b"/>
+      <feFlood flood-color="#05040F" flood-opacity="0.6"/><feComposite in2="b" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    <clipPath id="squircle"><rect x="100" y="100" width="824" height="824" rx="185"/></clipPath>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+  </g>
+
+  <g clip-path="url(#squircle)">
+    <rect x="100" y="100" width="824" height="824" fill="url(#glow)"/>
+    <!-- comet tail: tapered, glowing -->
+    <path d="M150 850 Q 300 560 585 470 L 600 560 Q 340 620 150 850 Z" fill="url(#tail)" filter="url(#soft)" opacity="0.8"/>
+    <path d="M150 850 Q 305 575 585 488 L 594 548 Q 345 610 150 850 Z" fill="url(#tail)"/>
+    <!-- summoned sparks along the trail -->
+    <g fill="#FFE7A3">
+      <circle cx="232" cy="742" r="7" opacity="0.45"/>
+      <circle cx="300" cy="640" r="9" opacity="0.6"/>
+      <circle cx="248" cy="690" r="5" opacity="0.4"/>
+      <circle cx="372" cy="598" r="11" opacity="0.75"/>
+      <circle cx="356" cy="660" r="6" opacity="0.5"/>
+      <circle cx="452" cy="548" r="8" opacity="0.85"/>
+    </g>
+  </g>
+
+  <!-- the note, mid-flight -->
+  <g transform="rotate(-13 640 420)" filter="url(#cardShadow)">
+    <path d="M500 250 H735 L790 305 V590 A28 28 0 0 1 762 618 H528 A28 28 0 0 1 500 590 V278 A28 28 0 0 1 528 250 Z" fill="url(#card)"/>
+    <path d="M735 250 V285 A20 20 0 0 0 755 305 H790 Z" fill="#C9C8F2"/>
+    <g fill="#8C88C9">
+      <rect x="548" y="340" width="190" height="20" rx="10"/>
+      <rect x="548" y="392" width="160" height="20" rx="10" opacity="0.8"/>
+      <rect x="548" y="444" width="182" height="20" rx="10" opacity="0.8"/>
+      <rect x="548" y="496" width="120" height="20" rx="10" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- sparkles -->
+  <g fill="#FFD66B">
+    <path d="M474 236 Q 480 272 512 278 Q 480 284 474 320 Q 468 284 436 278 Q 468 272 474 236 Z"/>
+    <path d="M818 642 Q 822 664 842 668 Q 822 672 818 694 Q 814 672 794 668 Q 814 664 818 642 Z" opacity="0.85"/>
+  </g>
+</svg>

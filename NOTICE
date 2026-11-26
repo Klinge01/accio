@@ -1,0 +1,38 @@
+Accio
+Copyright 2026 Klinge01
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Models
+------
+Accio does not include any model weights. They are downloaded from Hugging Face
+at first use and are governed by their own licenses:
+
+- mlx-community/embeddinggemma-300m-bf16, an MLX conversion of Google's
+  EmbeddingGemma. Used for all retrieval. Subject to the Gemma Terms of Use:
+  https://ai.google.dev/gemma/terms
+
+- gaudi/opus-mt-en-de-ctranslate2 and gaudi/opus-mt-de-en-ctranslate2,
+  CTranslate2 conversions of Helsinki-NLP's opus-mt-en-de and opus-mt-de-en.
+  Used to search each question in both German and English (ACCIO_TRANSLATE=0
+  turns this off). Licensed CC-BY-4.0 by the Language Technology Research
+  Group at the University of Helsinki: https://huggingface.co/Helsinki-NLP
+
+- mlx-community/Qwen2.5-VL-3B-Instruct-4bit, an MLX conversion of
+  Qwen/Qwen2.5-VL-3B-Instruct. Used only when image captions are switched on
+  (ACCIO_CAPTION=1, off by default). The upstream model card lists the
+  Qwen Research License (research and non-commercial use):
+  https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/LICENSE
+
+Name
+----
+"Accio" is the summoning charm from J.K. Rowling's Harry Potter books, used here
+as an affectionate reference. This project is not affiliated with, endorsed by,
+or connected to J.K. Rowling, Warner Bros., or any Harry Potter rights holder.
+The icon is original artwork.
+
+Third-party software
+--------------------
+Accio depends on open-source Rust crates, Python packages, and npm packages,
+each under its own license, as listed in Cargo.lock, ingest/uv.lock, and
+app/ui/package-lock.json.

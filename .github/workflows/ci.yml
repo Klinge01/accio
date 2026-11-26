@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest # Apple Silicon: MLX and Apple Vision are required
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+      - name: Python tests
+        working-directory: ingest
+        run: |
+          uv sync
+          uv run pytest -q
+
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Rust tests
+        run: cargo test -p accio-core --features testutil
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/ui/package-lock.json
+      - name: UI tests and build
+        working-directory: app/ui
+        run: |
+          npm ci
+          npx vitest run
+          npx tsc --noEmit
+          npm run build
+
+      - name: App compiles
+        run: cargo check -p accio

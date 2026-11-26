@@ -1,0 +1,29 @@
+[package]
+name = "accio"
+version = "0.1.0"
+edition = "2024"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+
+[dependencies]
+anyhow = "1"
+accio-core = { path = "../../crates/core" }
+serde_json = "1"
+tauri = { version = "~2.12", features = ["tray-icon", "macos-private-api", "image-png"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-opener = "2"
+tokio = { version = "1", features = ["full"] }
+tokio-util = "0.7"
+url = "2"
+serde = { version = "1", features = ["derive"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3", default-features = false, features = ["NSApplication", "NSButton", "NSDragging", "NSEvent", "NSPasteboard", "NSPasteboardItem", "NSResponder", "NSStatusBarButton", "NSStatusItem", "NSView", "NSControl", "objc2-core-foundation"] }
+objc2-foundation = { version = "0.3", default-features = false, features = ["NSArray", "NSError", "NSString", "NSGeometry", "objc2-core-foundation"] }
+security-framework = "3"

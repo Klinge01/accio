@@ -1,0 +1,5 @@
+{"q":"Wie hoch ist die Kaltmiete meiner Wohnung?","expect":"miete"}
+{"q":"Welche Kündigungsfrist steht im Vertrag?","expect":"vertrag"}
+{"q":"What did we decide at the project kickoff?","expect":"kickoff"}
+{"q":"Welche Kunden sind im letzten Quartal hinzugekommen?","expect":"kunden"}
+{"q":"What is the capital of Australia?","expect":null}

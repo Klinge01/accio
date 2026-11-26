@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Accio",
+  "version": "0.1.0",
+  "identifier": "io.github.klinge01.accio",
+  "build": {
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../ui/dist",
+    "beforeDevCommand": {
+      "script": "npm run dev",
+      "cwd": "../ui"
+    },
+    "beforeBuildCommand": {
+      "script": "npm run build",
+      "cwd": "../ui"
+    }
+  },
+  "app": {
+    "macOSPrivateApi": true,
+    "windows": [
+      {
+        "label": "panel",
+        "title": "Accio",
+        "width": 860,
+        "height": 620,
+        "visible": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true,
+        "resizable": false
+      },
+      {
+        "label": "settings",
+        "url": "settings.html",
+        "title": "Accio Settings",
+        "width": 770,
+        "height": 570,
+        "minWidth": 620,
+        "minHeight": 420,
+        "visible": false
+      },
+      {
+        "label": "drop-hud",
+        "url": "drop.html",
+        "title": "Drop to ingest",
+        "width": 180,
+        "height": 44,
+        "visible": false,
+        "focus": false,
+        "focusable": false,
+        "decorations": false,
+        "resizable": false,
+        "alwaysOnTop": true,
+        "skipTaskbar": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' ipc: http://ipc.localhost; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' ipc: http://ipc.localhost",
+      "devCsp": "default-src 'self' ipc: http://ipc.localhost; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' ipc: http://ipc.localhost ws://localhost:5173"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.png"
+    ],
+    "targets": [
+      "app"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "13.0"
+    }
+  }
+}

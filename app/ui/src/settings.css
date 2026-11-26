@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light dark;
+  font: 13px -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  color: CanvasText;
+  background: Canvas;
+  --border: color-mix(in srgb, CanvasText 18%, transparent);
+  --secondary: color-mix(in srgb, CanvasText 68%, Canvas);
+}
+* { box-sizing: border-box; }
+body { display: grid; grid-template-columns: 165px minmax(0, 1fr); height: 100vh; margin: 0; overflow: hidden; }
+nav { padding: 14px 10px; background: color-mix(in srgb, CanvasText 5%, Canvas); border-right: 1px solid var(--border); }
+nav button { display: block; width: 100%; text-align: left; border-color: transparent; background: transparent; }
+nav button[aria-current] { background: color-mix(in srgb, Highlight 19%, Canvas); font-weight: 600; }
+main { overflow: auto; padding: 16px 24px 24px; }
+h1 { font-size: 20px; font-weight: 650; margin: 3px 0 16px; }
+h2 { font-size: 14px; margin: 12px 0 4px; }
+.field { display: grid; grid-template-columns: minmax(120px, 175px) minmax(0, 1fr); align-items: center; gap: 10px; margin: 10px 0; }
+.checkbox { display: flex; align-items: center; gap: 6px; margin: 8px 0; width: fit-content; }
+.row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+button, input, select { font: inherit; }
+button, select, input:not([type=checkbox]):not([type=range]) { border: 1px solid var(--border); border-radius: 5px; min-height: 26px; padding: 3px 8px; color: inherit; }
+button { background: ButtonFace; }
+button:hover:enabled { filter: brightness(.94); }
+button:disabled { opacity: .6; }
+input[type=number] { width: 90px; }
+input[type=range] { flex: 1; min-width: 80px; }
+.hint { margin: 5px 0 10px; color: var(--secondary); overflow-wrap: anywhere; }
+.source-card { padding: 8px 0 12px; border-bottom: 1px solid var(--border); }
+.disabled-source > h2, .disabled-source > .source-status { color: var(--secondary); }
+details { margin: 8px 0; }
+summary { cursor: pointer; }
+.folder { padding-left: 14px; }
+pre { padding: 12px; border: 1px solid var(--border); white-space: pre-wrap; overflow-wrap: anywhere; }
+dialog { border: 1px solid var(--border); border-radius: 10px; padding: 15px; }
+dialog .row { justify-content: end; }
+#notice { white-space: pre-wrap; }
+.error { color: #ab2020; }
+@media (prefers-color-scheme: dark) { .error { color: #ff9393; } }

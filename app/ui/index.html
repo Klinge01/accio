@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accio</title>
+  </head>
+  <body>
+    <main class="panel">
+      <form id="ask-form" class="composer">
+        <label class="sr-only" for="question">Ask a question</label>
+        <input id="question" placeholder="Ask about your notes, or anything…" autocomplete="off" autofocus />
+        <button id="submit" type="submit" title="Send (Return)" aria-label="Send question">↵</button>
+      </form>
+      <div id="conversation" tabindex="0" aria-label="Conversation">
+        <div id="thread"></div>
+        <div id="error" role="alert" hidden></div>
+      </div>
+      <div id="drop-overlay" hidden>Drop to ingest files or folders</div>
+      <footer>
+        <span id="timings" role="status"></span>
+        <span id="scope"></span>
+        <button id="settings" type="button" title="Settings (Command-,)">Settings</button>
+        <button id="reset" type="button" title="New chat (Command-N)">New chat <kbd>⌘N</kbd></button>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

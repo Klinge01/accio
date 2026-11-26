@@ -1,0 +1,16 @@
+__pycache__/
+.DS_Store
+.env
+.pytest_cache/
+.uv-cache/
+.venv/
+/app/src-tauri/gen/
+/app/ui/dist/
+/eval/questions.jsonl
+/target/
+node_modules/
+
+# Code-search experiment: questions and runs name private code
+eval/code/*.jsonl
+eval/code/runs/
+dist/
